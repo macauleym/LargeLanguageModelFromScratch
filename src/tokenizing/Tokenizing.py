@@ -2,8 +2,11 @@ import tiktoken
 import torch
 from torch.utils.data import DataLoader
 
-import GPTDatasetV1
-import TrainingData
+from data import TrainingData, GPTDatasetV1
+
+print("##########")
+print("Tokenizing")
+print("##########")
 
 """
 def tokenize(text: str) -> list[str]:
@@ -90,7 +93,7 @@ for i in range(1, context_size+1):
     print(tiktokenizer.decode(context), "---->", tiktokenizer.decode([desired]))
 """
 
-verdict_text = TrainingData.read_file_content("../data/the-verdict.txt")
+verdict_text = TrainingData.read_file_content("../../data/the-verdict.txt")
 def create_dataloader_v1(
       txt
     , batch_size=4
