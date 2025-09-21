@@ -3,7 +3,7 @@ from torch import nn
 
 from data import SampleAttentionData
 
-from SelfAttention import SelfAttentionV2
+from attention.SelfAttention import SelfAttentionV2
 
 print()
 print("##########")

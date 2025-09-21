@@ -96,15 +96,15 @@ for i in range(1, context_size+1):
 verdict_text = TrainingData.read_file_content("../../data/the-verdict.txt")
 def create_dataloader_v1(
       txt
-    , batch_size=4
-    , max_length=256
-    , stride=128
-    , shuffle=True
-    , drop_last=True
-    , num_workers=0
+    , batch_size  = 4
+    , max_length  = 256
+    , stride      = 128
+    , shuffle     = True
+    , drop_last   = True
+    , num_workers = 0
     ):
     tokenizer = tiktoken.get_encoding("gpt2")
-    dataset = GPTDatasetV1.GPTDatasetV1(
+    dataset   = GPTDatasetV1.GPTDatasetV1(
           txt
         , tokenizer
         , max_length
@@ -144,8 +144,8 @@ def create_dataloader_v1(
 #print(embedding_layer(input_ids))
 
 ## Using our own data
-vocab_size = 50257
-output_dim = 256
+vocab_size            = 50257
+output_dim            = 256
 token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)
 
 max_length = 4
@@ -153,10 +153,10 @@ dataloader = create_dataloader_v1(
   verdict_text
 , batch_size = 8
 , max_length = max_length
-, stride = max_length
-, shuffle = False
+, stride     = max_length
+, shuffle    = False
 )
-data_iter = iter(dataloader)
+data_iter       = iter(dataloader)
 inputs, targets = next(data_iter)
 print("Token Ids:\n", inputs)
 print("\nInptus shape:\n", inputs.shape)
@@ -165,9 +165,9 @@ token_embeddings = token_embedding_layer(inputs)
 print(token_embeddings.shape)
 
 ## Apply GPT-style absolute embedding approach.
-context_length = max_length
+context_length      = max_length
 pos_embedding_layer = torch.nn.Embedding(context_length, output_dim)
-pos_embeddings = pos_embedding_layer(torch.arange(context_length))
+pos_embeddings      = pos_embedding_layer(torch.arange(context_length))
 print(pos_embeddings.shape)
 
 ## Apply the positional embeddings to our token embeddings.

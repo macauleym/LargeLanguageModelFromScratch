@@ -1,2 +1,3 @@
-tiktoken~=0.9.0
-torch~=2.7.1+cpu
+tiktoken==0.9.0
+torch==2.7.1+cpu
+matplotlib==3.10.5

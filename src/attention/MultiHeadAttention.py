@@ -3,7 +3,7 @@ from torch import nn
 
 from data import SampleAttentionData
 
-from CasualAttention import CasualAttention
+from attention.CasualAttention import CasualAttention
 
 print()
 print("##########")
@@ -80,7 +80,14 @@ print("Context vector shape: ", context_vectors.shape)
 # It does this by reshaping the input qkv tensors then combining the result.
 ##
 class MultiHeadAttention(nn.Module):
-    def __init__(self, dimension_in, dimension_out, context_length, dropout_percent, head_count, qkv_bias=False):
+    def __init__(  self
+                 , dimension_in
+                 , dimension_out
+                 , context_length
+                 , dropout_percent
+                 , head_count
+                 , qkv_bias=False
+                 ):
         super().__init__()
         assert (dimension_out % head_count == 0), \
             "dimension_out must be divisible by head_count"
