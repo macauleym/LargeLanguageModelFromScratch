@@ -12,14 +12,14 @@ class TransformerBlock(nn.Module):
             dimension_in    = config["embed_dimension"],
             dimension_out   = config["embed_dimension"],
             context_length  = config["context_length"],
-            dropout_percent = config["dropout_rate"],
+            dropout_percent = config["attention_dropout"],
             head_count      = config["head_count"],
             qkv_bias        = config["qkv_bias"]
         )
         self.feed_forward  = FeedForward(config)
         self.normal1       = LayerNormalizer(config["embed_dimension"])
         self.normal2       = LayerNormalizer(config["embed_dimension"])
-        self.drop_shortcut = nn.Dropout(config["dropout_rate"])
+        self.drop_shortcut = nn.Dropout(config["shortcut_dropout"])
 
     def forward(self, x):
         shortcut = x ## Shortcut for attention block.

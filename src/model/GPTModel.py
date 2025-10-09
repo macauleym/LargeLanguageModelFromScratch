@@ -14,7 +14,7 @@ class GPTModel(nn.Module):
         ## that holds whatever data we like.
         self.token_embedding = nn.Embedding(config["vocab_size"], config["embed_dimension"])
         self.position_embedding = nn.Embedding(config["context_length"], config["embed_dimension"])
-        self.drop_embedding = nn.Dropout(config["dropout_rate"])
+        self.drop_embedding = nn.Dropout(config["embed_dropout"])
 
         self.transformer_blocks = nn.Sequential(
             *[TransformerBlock(config) for _ in range(config["layer_count"])])
